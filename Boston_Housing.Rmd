@@ -2,9 +2,51 @@ title: "Boston Housing Project (Age of Home)"
 author: "Shakespeare"
 date: "September 25, 2018"
 output: html_document
+```{r}
+install.packages('caret')
+```
+
 ---
 ```{r}
+
 library(neuralnet)
 library(caret)
 library(tidyverse)
+library(MASS)
 ```
+```{r}
+data("Boston") #extract data
+df <- Boston #
+str(df)
+?Boston
+hist(df$age ,col ="green") #plot histogram of age variable
+summary(df) #summary of each field
+
+```
+
+```{r}
+head(1:nrow(df))
+nrow(df)
+rows <- sample(1:nrow(df),nrow(df))
+rows <- sample(1:nrow(df),nrow(df)*.8, replace = F)
+head(rows)
+train_base = df[rows,]
+test_base = df[-rows,]
+
+dim(train_base)
+dim(test_base)
+```
+```{r}
+rows2 <- createDataPartition(df$age,times=1 ,p=.8, list=F)
+head(rows2)
+training = df[rows2,]
+testing = df[-rows2,]
+
+dim(training)
+dim(testing)
+```
+
+```{r}
+    
+```
+
